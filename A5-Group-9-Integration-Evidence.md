@@ -6,7 +6,6 @@
 **Campus Library Base URL:** https://campus-library-app.vercel.app  
 **Notification Hub Base URL:** https://notification-hub-team20.onrender.com  
 **Environment:** Production  
-**Deployment ID:** dpl_HSsWFnu9X28PcwhYYNHF8ovfShyS  
 **Test Date:** 22 September 2026  
 
 [6631503124 Jutatip Sriputhon]
