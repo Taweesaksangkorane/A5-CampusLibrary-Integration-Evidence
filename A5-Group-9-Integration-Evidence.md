@@ -143,7 +143,7 @@ Captured response:
 
 ![Provider Proof - Integration Status](./Screenshot%202026-09-22%20220327.png)
 
-**Figure 2.** REAL EVIDENCE — Campus Library provider endpoint returned `200 OK`.
+**Figure 2.** EVIDENCE — Campus Library provider endpoint returned `200 OK`.
 
 ## Internal Vercel Request Log
 
@@ -613,7 +613,7 @@ This demonstrates graceful fallback during the outage and automatic recovery aft
 
 | Requirement | Evidence included | Result |
 |---|---|---|
-| 1. Consumer Proof | Partner URL, real captured timestamp/response screenshot, final Notification Hub mapping | **PASS** |
+| 1. Consumer Proof | Partner URL, captured timestamp/response screenshot, final Notification Hub mapping | **PASS** |
 | 2. Provider Proof | endpoint + Vercel request log + partner confirmation | **PASS** |
 | 3. Webhook Receiver | route availability + incoming payload + secret PASS + stored event | **PASS** |
 | 4. Webhook Sender | loan trigger + outgoing payload + Notification Hub response log | **PASS** |
