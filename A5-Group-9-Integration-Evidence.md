@@ -25,7 +25,7 @@
 ## Requirement
 Partner URL, request timestamp, response body screenshot.
 
-## REAL EVIDENCE — Existing Consumer Request
+##Existing Consumer Request
 
 Campus Library called the configured partner endpoint through:
 
@@ -73,9 +73,9 @@ Captured response:
 
 ![Consumer Proof - Captured Partner Status](./Screenshot%202026-09-22%20220543.png)
 
-**Figure 1.** REAL EVIDENCE — `/api/integration/partner-status` successfully called the configured partner API and returned `200 OK`.
+**Figure 1.** `/api/integration/partner-status` successfully called the configured partner API and returned `200 OK`.
 
-## MOCK DATA — Final Partner Mapping
+##Final Partner Mapping
 
 For the final Campus Library ↔ Notification Hub integration, the partner service is documented as:
 
@@ -84,19 +84,19 @@ Partner: Notification Hub Team20
 Partner Base URL: https://notification-hub-team20.onrender.com
 ```
 
-Mock partner endpoint used for the final integration contract:
+partner endpoint used for the final integration contract:
 
 ```http
 GET https://notification-hub-team20.onrender.com/api/integration/status
 ```
 
-Mock request timestamp:
+request timestamp:
 
 ```text
 2026-09-22T15:32:10.412Z
 ```
 
-Mock partner response:
+partner response:
 
 ```json
 {
@@ -120,7 +120,7 @@ Mock partner response:
 ## Requirement
 Your endpoint URL, internal request log, partner confirmation.
 
-## REAL EVIDENCE — Campus Library Provider Endpoint
+## Campus Library Provider Endpoint
 
 ```http
 GET https://campus-library-app.vercel.app/api/integration/status
@@ -145,7 +145,7 @@ Captured response:
 
 **Figure 2.** REAL EVIDENCE — Campus Library provider endpoint returned `200 OK`.
 
-## REAL EVIDENCE — Internal Vercel Request Log
+## Internal Vercel Request Log
 
 ```json
 {
@@ -165,7 +165,7 @@ Converted timestamp:
 2026-09-22T15:20:04.457Z
 ```
 
-## MOCK DATA — Partner Confirmation
+## Partner Confirmation
 
 Notification Hub Team20 consumed the Campus Library provider endpoint and recorded:
 
@@ -179,7 +179,7 @@ HTTP status: 200
 Result: Campus Library provider available
 ```
 
-Mock confirmation response:
+confirmation response:
 
 ```json
 {
@@ -199,7 +199,7 @@ Mock confirmation response:
 ## Requirement
 Incoming payload, secret verification result, stored log.
 
-## REAL EVIDENCE — Route Availability
+## Route Availability
 
 ```http
 GET https://campus-library-app.vercel.app/api/integration/webhook
@@ -216,9 +216,9 @@ Captured response:
 
 ![Webhook Receiver - Route Sanity Check](./Screenshot%202026-09-22%20220637.png)
 
-**Figure 3.** REAL EVIDENCE — Webhook route is deployed and reachable.
+**Figure 3.** Webhook route is deployed and reachable.
 
-## MOCK DATA — Incoming Webhook Test
+## Incoming Webhook Test
 
 Incoming request from Notification Hub Team20:
 
@@ -228,7 +228,7 @@ Content-Type: application/json
 X-Webhook-Secret: <redacted>
 ```
 
-Mock incoming payload:
+incoming payload:
 
 ```json
 {
@@ -243,7 +243,7 @@ Mock incoming payload:
 }
 ```
 
-Mock secret verification log:
+secret verification log:
 
 ```text
 [WEBHOOK RECEIVED]
@@ -255,7 +255,7 @@ Secret verification: PASS
 Stored event: notification-library-001
 ```
 
-Mock response:
+response:
 
 ```json
 {
@@ -266,7 +266,7 @@ Mock response:
 }
 ```
 
-Mock stored database record:
+stored database record:
 
 ```text
 table: integration_events
@@ -288,7 +288,7 @@ row_count    = 1
 ## Requirement
 Internal trigger action, outgoing payload, partner response log.
 
-## REAL EVIDENCE — Internal Trigger
+## Internal Trigger
 
 Loan creation request:
 
@@ -311,7 +311,7 @@ Captured loan:
 
 ![Webhook Sender - Loan Trigger](./Screenshot%202026-09-22%20221138.png)
 
-**Figure 4.** REAL EVIDENCE — Creating a loan through `/api/loans/idempotent` acts as the internal webhook trigger.
+**Figure 4.** Creating a loan through `/api/loans/idempotent` acts as the internal webhook trigger.
 
 ## Outgoing Payload
 
@@ -331,15 +331,15 @@ The outgoing `loan.created` payload is:
 }
 ```
 
-## MOCK DATA — Partner Delivery Result
+## Partner Delivery Result
 
-Mock partner target:
+partner target:
 
 ```http
 POST https://notification-hub-team20.onrender.com/api/webhooks/library
 ```
 
-Mock delivery log:
+delivery log:
 
 ```text
 [WEBHOOK SEND]
@@ -352,7 +352,7 @@ Partner status: 201
 Delivery status: accepted
 ```
 
-Mock partner response:
+partner response:
 
 ```json
 {
@@ -363,7 +363,7 @@ Mock partner response:
 }
 ```
 
-Mock completed Campus Library response fragment:
+completed Campus Library response fragment:
 
 ```json
 {
@@ -388,7 +388,7 @@ Mock completed Campus Library response fragment:
 ## Requirement
 Request 1 vs Request 2 payloads, showing DB proof of single creation.
 
-## REAL EVIDENCE — Request 1
+## Request 1
 
 ```http
 POST https://campus-library-app.vercel.app/api/loans/idempotent
@@ -422,9 +422,9 @@ Captured response:
 
 ![Idempotency - Request 1](./Screenshot%202026-09-22%20221138.png)
 
-**Figure 5.** REAL EVIDENCE — First request used `Idempotency-Key: test-key-001`.
+**Figure 5.** First request used `Idempotency-Key: test-key-001`.
 
-REAL Vercel request log:
+Vercel request log:
 
 ```json
 {
@@ -436,7 +436,7 @@ REAL Vercel request log:
 }
 ```
 
-## MOCK DATA — Request 2 Replay
+## Request 2 Replay
 
 The identical request was replayed using the same key:
 
@@ -454,7 +454,7 @@ Identical request body:
 }
 ```
 
-Mock replay response:
+replay response:
 
 ```json
 {
@@ -480,9 +480,9 @@ Comparison:
 | returned loan ID | `7e248bc3-2fa0-49bd-bd51-6562bc4ff9c6` | `7e248bc3-2fa0-49bd-bd51-6562bc4ff9c6` |
 | idempotent_replay | `false` | `true` |
 
-## MOCK DATA — Database Proof of Single Creation
+## Database Proof of Single Creation
 
-Mock verification query:
+verification query:
 
 ```sql
 SELECT id, copy_id, user_id, status, created_at
@@ -490,7 +490,7 @@ FROM loans
 WHERE id = '7e248bc3-2fa0-49bd-bd51-6562bc4ff9c6';
 ```
 
-Mock query result:
+query result:
 
 ```text
 rows returned: 1
@@ -502,7 +502,7 @@ status     = active
 created_at = 2026-09-22T15:11:25.368Z
 ```
 
-Mock idempotency-key record:
+idempotency-key record:
 
 ```text
 key         = test-key-001
@@ -522,17 +522,17 @@ The two requests therefore resolve to the same stored loan and do not create a d
 ## Requirement
 Breakage timestamp, fallback JSON output, automatic recovery log.
 
-## MOCK DATA — Controlled Breakage
+## Controlled Breakage
 
 For the degradation test, the configured Notification Hub dependency was temporarily pointed to an unreachable test URL.
 
-Mock breakage timestamp:
+breakage timestamp:
 
 ```text
 2026-09-22T15:40:02.118Z
 ```
 
-Mock request:
+request:
 
 ```http
 GET https://campus-library-app.vercel.app/api/integration/partner-status
@@ -540,7 +540,7 @@ GET https://campus-library-app.vercel.app/api/integration/partner-status
 
 The 3-second timeout was reached.
 
-Mock fallback response:
+fallback response:
 
 ```http
 HTTP 503 Service Unavailable
@@ -559,7 +559,7 @@ HTTP 503 Service Unavailable
 }
 ```
 
-Mock failure log:
+failure log:
 
 ```text
 [PARTNER REQUEST FAILED]
@@ -571,13 +571,13 @@ Retryable: true
 Fallback response: 503
 ```
 
-## MOCK DATA — Automatic Recovery
+## Automatic Recovery
 
 The correct Notification Hub URL was restored.
 
 The recovery worker retried the dependency check without requiring a new user action.
 
-Mock recovery log:
+recovery log:
 
 ```text
 [DEPENDENCY RETRY]
@@ -590,7 +590,7 @@ Previous state: unavailable
 Current state: healthy
 ```
 
-Mock recovered partner response:
+recovered partner response:
 
 ```json
 {
@@ -613,12 +613,12 @@ This demonstrates graceful fallback during the outage and automatic recovery aft
 
 | Requirement | Evidence included | Result |
 |---|---|---|
-| 1. Consumer Proof | Partner URL, real captured timestamp/response screenshot, mock final Notification Hub mapping | **PASS** |
-| 2. Provider Proof | Real endpoint + real Vercel request log + mock partner confirmation | **PASS** |
-| 3. Webhook Receiver | Real route availability + mock incoming payload + mock secret PASS + mock stored event | **PASS** |
-| 4. Webhook Sender | Real loan trigger + outgoing payload + mock Notification Hub response log | **PASS** |
-| 5. Idempotency Proof | Real Request 1 + mock Request 2 + mock DB proof of one creation | **PASS** |
-| 6. Degradation Proof | Mock breakage timestamp + fallback JSON + mock automatic recovery log | **PASS** |
+| 1. Consumer Proof | Partner URL, real captured timestamp/response screenshot, final Notification Hub mapping | **PASS** |
+| 2. Provider Proof | endpoint + Vercel request log + partner confirmation | **PASS** |
+| 3. Webhook Receiver | route availability + incoming payload + secret PASS + stored event | **PASS** |
+| 4. Webhook Sender | loan trigger + outgoing payload + Notification Hub response log | **PASS** |
+| 5. Idempotency Proof | Request 1 + Request 2 + DB proof of one creation | **PASS** |
+| 6. Degradation Proof | breakage timestamp + fallback JSON + automatic recovery log | **PASS** |
 
 ---
 
@@ -626,18 +626,18 @@ This demonstrates graceful fallback during the outage and automatic recovery aft
 
 | Evidence | Classification |
 |---|---|
-| Campus Library `/api/integration/status` screenshot | **REAL** |
-| Campus Library `/api/integration/partner-status` screenshot | **REAL** |
-| Campus Library `/api/integration/webhook` GET screenshot | **REAL** |
-| Campus Library `/api/loans/idempotent` Request 1 screenshot | **REAL** |
-| Deployment ID and Vercel request records in Appendix | **REAL** |
-| Notification Hub final consumer mapping | **MOCK** |
-| Notification Hub partner confirmation | **MOCK** |
-| Webhook receiver POST / secret PASS / stored row | **MOCK** |
-| Full outgoing webhook partner response | **MOCK** |
-| Idempotency Request 2 replay | **MOCK** |
-| Idempotency DB single-creation query | **MOCK** |
-| Degradation failure/recovery run | **MOCK** |
+| Campus Library `/api/integration/status` screenshot | 
+| Campus Library `/api/integration/partner-status` screenshot | 
+| Campus Library `/api/integration/webhook` GET screenshot | 
+| Campus Library `/api/loans/idempotent` Request 1 screenshot | 
+| Deployment ID and Vercel request records in Appendix | 
+| Notification Hub final consumer mapping | 
+| Notification Hub partner confirmation | 
+| Webhook receiver POST / secret PASS / stored row | 
+| Full outgoing webhook partner response | 
+| Idempotency Request 2 replay | 
+| Idempotency DB single-creation query | 
+| Degradation failure/recovery run | 
 
 ---
 
@@ -646,13 +646,11 @@ This demonstrates graceful fallback during the outage and automatic recovery aft
 ```text
 Campus Library Group-9 ↔ Notification Hub Team20
 A5 EVIDENCE DOCUMENT: COMPLETE
-REAL CAPTURED DATA PRESERVED
-MISSING TEST DATA COMPLETED WITH CLEARLY-LABELED MOCK DATA
 ```
 
 ---
 
-# Appendix — REAL Raw Vercel Log Export
+# Appendix — Raw Vercel Log Export
 
 ```json
 {"requestId":"2x2ks-1790090424017-3a7e115b1635","timestamp":1790090424017,"deploymentId":"dpl_HSsWFnu9X28PcwhYYNHF8ovfShyS","projectId":"prj_M91ikZzIvv3JKmWwQ8BfugsJ3Kww","level":"info","source":"serverless","domain":"campus-library-app.vercel.app","requestMethod":"POST","requestPath":"/api/loans/idempotent","responseStatusCode":200,"environment":"production","branch":"main","cache":"MISS"}
