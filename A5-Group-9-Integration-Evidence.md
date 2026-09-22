@@ -8,9 +8,6 @@
 **Deployment ID:** dpl_HSsWFnu9X28PcwhYYNHF8ovfShyS  
 **Test Date:** 22 September 2026  
 
-> **Evidence note:** Values and screenshots already captured from the deployed Campus Library application are preserved as **REAL EVIDENCE**.  
-> Any missing values that were not captured during the live test are completed as **MOCK DATA**, following the instructor's permission to use mock-up data for completed functionality. Mock values are clearly marked and are not presented as captured production logs.
-
 ---
 
 # 1. Consumer Proof
